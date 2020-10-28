@@ -12,6 +12,11 @@ import {
 } from 'react-admin'
 
 describe("checkMethodType", () => {
+
+    beforeAll(() => {
+        global.console.error = () => {}
+    })
+
     it("should throw error if method type is not supported by react-admin", () => {
         const notValidType = 'NOT_VALID_TYPE'
         expect(() => checkMethodType(notValidType)).toThrow(`Not valid type ${notValidType}`)
