@@ -1,7 +1,12 @@
 // TODO: Add unit tests App.js
+// TODO: Implement i8n provider
+// TODO: Implement a theme
+// TODO: Add more resources
 // TODO: Implement login page
 // TODO: Implement toggle router
 // TODO: Implement authentication
+// TODO: Add Google Analytics
+
 import React from 'react';
 import { Admin, Resource } from 'react-admin';
 
