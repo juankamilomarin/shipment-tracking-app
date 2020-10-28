@@ -12,8 +12,7 @@
 // ***********************************************
 
 Cypress.Commands.add('checkTableColumns', (tableId, columnNames) => {
-    const tableSelector = '#' + tableId
-    cy.get(tableSelector).within(() => {
+    cy.get(`#${tableId}`).within(() => {
         cy.get('th').should(($columns) => {
             expect($columns.length).equal(3)
             $columns.each((i, $column) => {
