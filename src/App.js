@@ -1,3 +1,7 @@
+// TODO: Add unit tests App.js
+// TODO: Implement login page
+// TODO: Implement toggle router
+// TODO: Implement authentication
 import React from 'react';
 import { Admin, Resource } from 'react-admin';
 

@@ -1,3 +1,4 @@
+// TODO: Add unit tests to graphQLQueries.js
 const getUnquotedJson = (object) => {
     const json = JSON.stringify(object)
     return json.replace(/"([^"]+)":/g, '$1:');

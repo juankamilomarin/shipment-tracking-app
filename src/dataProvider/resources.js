@@ -1,3 +1,4 @@
+// TODO: Add unit tests resources.js
 import { PROPERTIES as COURIER_PROPERTIES } from '../couriers/resource'
 
 // -------------- Resources

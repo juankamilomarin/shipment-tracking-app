@@ -1,3 +1,4 @@
+// TODO: Configure Cypress for the project
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
