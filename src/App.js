@@ -20,9 +20,9 @@ const resources = [
 ]
 
 const App = () => (
-  <Admin dataProvider={customDataProvider}>
-      {resources}
-  </Admin>
+    <Admin dataProvider={customDataProvider}>
+        {resources}
+    </Admin>
 )
 
 export default App;
