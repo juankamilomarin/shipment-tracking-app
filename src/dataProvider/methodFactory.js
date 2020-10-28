@@ -1,25 +1,18 @@
 // TODO: Split logic inside this file
 // TODO: Add unit tests to methodFactory.js
 import { getList, getMany, getOne, update, updateMany, create } from './graphQLQueries'
+import {
+    GET_LIST,
+    GET_MANY,
+    GET_ONE,
+    UPDATE,
+    UPDATE_MANY,
+    CREATE
+} from 'react-admin'
 import { getResourceProperties  } from './resources'
 import CustomError from '../common/CustomError'
 import { ERROR_TYPES } from '../common/CustomError'
-
-// -------------- Methods used by react-admin
-export const GET_LIST = 'GET_LIST'
-export const GET_MANY = 'GET_MANY'
-export const GET_ONE = 'GET_ONE'
-export const UPDATE = 'UPDATE'
-export const UPDATE_MANY = 'UPDATE_MANY'
-export const CREATE = 'CREATE'
-export const DELETE = 'DELETE'
-export const DELETE_MANY = 'DELETE_MANY'
-export const GET_MANY_REFERENCE = 'GET_MANY_REFERENCE'
-
-export const checkMethodType = (type) => {
-    if(type !== GET_LIST && type !== GET_MANY && type !== GET_ONE && type !== UPDATE && type !== UPDATE_MANY &&
-        type !== CREATE && type !== DELETE && type !== DELETE_MANY && type !== GET_MANY_REFERENCE) throw new CustomError(ERROR_TYPES.METHOD_NOT_VALID, `Not valid type ${type}`) 
-}
+import checkMethodType from './checkMethodType'
 
 export const getGraphQLRequest = async (query) => {    
     const headers = { 
