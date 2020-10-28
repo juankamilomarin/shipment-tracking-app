@@ -1,10 +1,10 @@
-// TODO: Add unit tests to index.js
+import React from 'react';
 import LocalShipping from '@material-ui/icons/LocalShipping';
 import CourierList from './CourierList';
 
 const couriers = {
     list: CourierList,
-    icon: LocalShipping
+    icon: () => <div id='courier-icon'><LocalShipping/></div>
 }
 
 export default couriers

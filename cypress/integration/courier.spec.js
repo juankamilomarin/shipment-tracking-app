@@ -7,9 +7,14 @@ describe('Courier', () => {
         cy.get('#courier-icon').should('exist')
     })
 
-    it('should load list', () => {
+    it('should load table with its filters', () => {
         cy.visit('/')
-        cy.get('#courier-list').should('exist')
-        // TODO Add filter and columns validation
+        cy.get('#courier-list').within(() => {
+            cy.get('#courier-filter').within(() => {
+                cy.get('#courier-active-filter').should('be.checked')
+            })
+            let expectedColumnNames = ['Id', 'Name', 'Active']
+            cy.checkTableColumns('courier-table', expectedColumnNames)
+        })
     })
 })

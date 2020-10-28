@@ -1,3 +1,6 @@
+/// <reference types="cypress" />
+/*global Cypress, cy*/
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -7,19 +10,15 @@
 // commands please read more here:
 // https://on.cypress.io/custom-commands
 // ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add("login", (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add("drag", { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add("dismiss", { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('checkTableColumns', (tableId, columnNames) => {
+    const tableSelector = '#' + tableId
+    cy.get(tableSelector).within(() => {
+        cy.get('th').should(($columns) => {
+            expect($columns.length).equal(3)
+            $columns.each((i, $column) => {
+                expect($column).to.have.property('innerText').equal(columnNames[i])
+            })
+        })
+    })
+})
