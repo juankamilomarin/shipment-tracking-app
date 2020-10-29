@@ -6,8 +6,8 @@ import {
     UPDATE_MANY,
     CREATE
 } from 'react-admin'
-import CustomError from '../common/CustomError'
-import { ERROR_TYPES } from '../common/CustomError'
+import CustomError from '../util/CustomError'
+import { ERROR_TYPES } from '../util/CustomError'
 import checkMethodType from './checkMethodType'
 
 const getAllResponse = (resource, response) => {

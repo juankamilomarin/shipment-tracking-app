@@ -9,7 +9,7 @@ import {
     DELETE,
     DELETE_MANY
 } from 'react-admin'
-import CustomError, { ERROR_TYPES } from '../common/CustomError'
+import CustomError, { ERROR_TYPES } from '../util/CustomError'
 
 const checkMethodType = (type) => {
     if(type !== GET_LIST 

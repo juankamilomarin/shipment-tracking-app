@@ -8,7 +8,7 @@ import {
     CREATE
 } from 'react-admin'
 import { getResourceProperties  } from './resources'
-import CustomError, { ERROR_TYPES } from '../common/CustomError'
+import CustomError, { ERROR_TYPES } from '../util/CustomError'
 import checkMethodType from './checkMethodType'
 import getGraphQLRequest from './getGraphQLRequest'
 import getDefaultFilters from './getDefaultFilters'
