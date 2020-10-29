@@ -16,7 +16,6 @@ import getGraphQLRequest from './getGraphQLRequest'
 jest.mock('./graphQLQueries')
 jest.mock('./getGraphQLRequest')
 
-
 describe("getRequest - getList", () => {
 
     beforeEach(() => {
