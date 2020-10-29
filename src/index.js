@@ -1,5 +1,3 @@
-// TODO: Update readme file
-// TODO: Configure Cypress for the project
 // TODO: Add another App Icon
 import React from 'react';
 import ReactDOM from 'react-dom';
