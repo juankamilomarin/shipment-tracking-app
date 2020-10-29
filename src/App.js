@@ -1,6 +1,7 @@
 // TODO: Implement i8n provider
 // TODO: Implement a theme
 // TODO: Add more resources
+// TODO: Add custom pagination
 // TODO: Implement login page
 // TODO: Implement toggle router
 // TODO: Implement authentication
@@ -11,11 +12,14 @@ import { Admin, Resource } from 'react-admin';
 
 import customDataProvider from './dataProvider/customDataProvider';
 
-import couriers from './couriers';
+import couriers from './couriers'
+import stores from './stores'
 import { COURIER } from './dataProvider/resources'
+import { STORE } from './dataProvider/resources'
 
 const resources = [
     <Resource name={COURIER} {...couriers} key={`${COURIER}-resource`}/>,
+    <Resource name={STORE} {...stores} key={`${STORE}-resource`}/>,
 ]
 
 const App = () => (

@@ -1,17 +1,17 @@
-create table shop
+create table store
 (
     id     serial               not null
-        constraint shop_pk
+        constraint store_pk
             primary key,
     name   varchar              not null,
     active boolean default true not null
 );
 
-alter table shop
+alter table store
     owner to postgres;
 
-create unique index shop_id_uindex
-    on shop (id);
+create unique index store_id_uindex
+    on store (id);
 
 create table courier
 (

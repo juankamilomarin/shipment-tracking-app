@@ -35,6 +35,7 @@ Run this command under your `hasura-postgres` folder
 Run the `create-tables.sql` file on the newly Postgres database. You can run this directly on Hasura (Go to http://localhost:8080/console/data/sql) or in your favorite DB IDE.
  Once you run it, you should see the following tables:
  * courier
+ * store
 
 ### React application
 Once your hasura instance is running simply run your React app by running `npm start`
