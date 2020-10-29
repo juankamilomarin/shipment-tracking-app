@@ -41,6 +41,13 @@
       "last 1 safari version"
     ]
   },
+  "jest": {
+    "collectCoverageFrom": [
+      "!src/App.js",
+      "!**/index.js",
+      "!**/node_modules/**"
+    ]
+  },
   "devDependencies": {
     "@testing-library/dom": "^7.26.3",
     "cypress": "^5.5.0"
