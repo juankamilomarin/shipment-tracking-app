@@ -1,5 +1,3 @@
-// TODO: Split logic inside this file
-// TODO: Add unit tests to methodFactory.js
 import { getList, getMany, getOne, update, updateMany, create } from './graphQLQueries'
 import {
     GET_LIST,

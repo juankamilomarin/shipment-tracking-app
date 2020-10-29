@@ -1,6 +1,6 @@
 import { getResourceProperties } from './resources'
 import { COURIER } from './resources'
-import { PROPERTIES as COURIER_PROPERTIES } from '../couriers/resource'
+import { RESOURCE_PROPERTIES as COURIER_PROPERTIES } from '../couriers'
 
 describe("getResourceProperties", () => {
 

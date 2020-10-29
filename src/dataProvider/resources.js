@@ -1,5 +1,4 @@
-// TODO: Add unit tests resources.js
-import { PROPERTIES as COURIER_PROPERTIES } from '../couriers/resource'
+import { RESOURCE_PROPERTIES as COURIER_PROPERTIES } from '../couriers'
 
 // -------------- Resources
 export const COURIER = 'courier'
