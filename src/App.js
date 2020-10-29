@@ -15,7 +15,7 @@ import couriers from './couriers';
 import { COURIER } from './dataProvider/resources'
 
 const resources = [
-    <Resource name={COURIER} {...couriers}/>,
+    <Resource name={COURIER} {...couriers} key={`${COURIER}-resource`}/>,
 ]
 
 const App = () => (
