@@ -1,5 +1,6 @@
 // TODO: Add unit tests to customDataProvider.js
-import { getRequest, getResponse } from './methodFactory'
+import getResponse from './getResponse'
+import getRequest from './getRequest'
 
 const getPromiseRequest = (type, resource, params) => { 
     const serverEndpoint = window.config.hasura.endpoint + '/v1/graphql'
