@@ -1,8 +1,7 @@
-// TODO: Add unit tests to customDataProvider.js
 import getResponse from './getResponse'
 import getRequest from './getRequest'
 
-const getPromiseRequest = (type, resource, params) => { 
+const getRequestPromise = (type, resource, params) => { 
     const serverEndpoint = window.config.hasura.endpoint + '/v1/graphql'
     return getRequest(type, resource, params).then(request => 
             fetch(serverEndpoint, request).then(async response => {
@@ -13,7 +12,7 @@ const getPromiseRequest = (type, resource, params) => {
 }
 
 const customDataProvider = (type, resource, params) => {
-    return getPromiseRequest(type, resource, params)
+    return getRequestPromise(type, resource, params)
 }
 
 export default customDataProvider
