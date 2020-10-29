@@ -14,7 +14,7 @@
 Cypress.Commands.add('checkTableColumns', (tableId, columnNames) => {
     cy.get(`#${tableId}`).within(() => {
         cy.get('th').should(($columns) => {
-            expect($columns.length).equal(3)
+            expect($columns.length).equal(columnNames.length)
             $columns.each((i, $column) => {
                 expect($column).to.have.property('innerText').equal(columnNames[i])
             })
