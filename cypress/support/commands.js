@@ -27,6 +27,7 @@ const getOperationName = (query) =>
         .split('{')[0]                  // Get the string until first {
             .split(' ')[1]              // Get second word
 
+// TODO Add operation name as part of the query data sent to Hasura
 Cypress.Commands.add('stubGraphQlCalls', () => {
     cy.route2(
         {
