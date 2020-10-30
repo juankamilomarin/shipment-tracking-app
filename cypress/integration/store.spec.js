@@ -2,6 +2,10 @@
 /*global cy*/
 
 describe('Store', () => {
+    beforeEach(() => {
+        cy.stubGraphQlCalls()
+    })
+
     it('should load stores icon', () => {
         cy.visit('/')
         cy.get('#store-icon').should('exist')

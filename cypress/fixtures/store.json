@@ -1,0 +1,31 @@
+{
+    "data": {
+        "store_aggregate": {
+            "aggregate": {
+                "totalCount": 5
+            }
+        },
+        "store": [
+            {
+                "id": 1,
+                "name": "Amazon",
+                "active": true
+            },
+            {
+                "id": 2,
+                "name": "Barnes & Noble",
+                "active": true
+            },
+            {
+                "id": 3,
+                "name": "Bricklink",
+                "active": true
+            },
+            {
+                "id": 4,
+                "name": "eBay",
+                "active": true
+            }
+        ]
+    }
+}

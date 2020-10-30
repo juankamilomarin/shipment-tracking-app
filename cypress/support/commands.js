@@ -21,3 +21,39 @@ Cypress.Commands.add('checkTableColumns', (tableId, columnNames) => {
         })
     })
 })
+
+const getOperationName = (query) => 
+    query.replace(/(\r\n|\n|\r)/gm,'')  // Delete line breaks
+        .split('{')[0]                  // Get the string until first {
+            .split(' ')[1]              // Get second word
+
+Cypress.Commands.add('stubGraphQlCalls', () => {
+    cy.route2(
+        {
+            method: 'POST',
+            url: 'http://localhost:8080/v1/graphql',
+        },
+        (req) => {
+            const query = JSON.parse(req.body).query
+            const operationName = getOperationName(query)
+            let fixture
+            switch (operationName) {
+                case 'get_list_courier':
+                    fixture = 'courier.json'
+                    break;
+                case 'get_list_store':
+                    fixture = 'store.json'
+                    break;
+                default:
+                    break;
+            }
+            const response = {
+                fixture,
+                headers: {
+                    'access-control-allow-origin': '*' // Avoid CORS issues
+                }
+            }
+            req.reply(response)
+        }
+    )
+})
