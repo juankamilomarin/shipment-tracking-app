@@ -1,3 +1,4 @@
+// TODO Implement cache
 import {
     GET_LIST,
     GET_MANY,
