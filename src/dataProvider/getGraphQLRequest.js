@@ -1,8 +1,8 @@
-const getGraphQLRequest = async (query) => {    
+const getGraphQLRequest = async (operationName, query) => {    
     const headers = { 
         'content-type': 'application/json'
     }
-    let dataQuery = { query };
+    let dataQuery = { operationName, query };
     const request = { 
         method: 'POST',
         headers,

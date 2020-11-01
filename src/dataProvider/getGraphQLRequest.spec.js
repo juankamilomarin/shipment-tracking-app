@@ -2,15 +2,16 @@ import getGraphQLRequest from './getGraphQLRequest';
 
 describe("getGraphQLRequest", () => {
 
-    it("should return expected request", async () => {
+    it("should return request with method type, headers and body", async () => {
+        const operationName = 'testOperationName'
         const testQuery = { testQuery: 'test query' }
-        const actualRequest = await getGraphQLRequest(testQuery)
+        const actualRequest = await getGraphQLRequest(operationName, testQuery)
         const expectedRequest = { 
             method: 'POST',
             headers: { 
                 'content-type': 'application/json' 
             },
-            body: "{\"query\":{\"testQuery\":\"test query\"}}"
+            body: "{\"operationName\":\"testOperationName\",\"query\":{\"testQuery\":\"test query\"}}"
         }
         expect(actualRequest).toStrictEqual(expectedRequest)
     });

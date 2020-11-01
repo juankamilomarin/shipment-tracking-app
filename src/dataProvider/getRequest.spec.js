@@ -19,8 +19,8 @@ jest.mock('./getGraphQLRequest')
 describe("getRequest - getList", () => {
 
     beforeEach(() => {
-        getList.mockImplementation(() => 'getList')
-        getGraphQLRequest.mockImplementation(query => query)
+        getList.mockImplementation(() => ['getList'])
+        getGraphQLRequest.mockImplementation((operationName, _) => operationName)
     })
 
     afterEach(() => {
@@ -120,8 +120,8 @@ describe("getRequest - getList", () => {
 describe("getRequest - getMany", () => {
 
     beforeEach(() => {
-        getMany.mockImplementation(() => 'getMany')
-        getGraphQLRequest.mockImplementation(query => query)
+        getMany.mockImplementation(() => ['getMany'])
+        getGraphQLRequest.mockImplementation((operationName, _) => operationName)
     })
 
     afterEach(() => {
@@ -177,8 +177,8 @@ describe("getRequest - getMany", () => {
 describe("getRequest - getOne", () => {
 
     beforeEach(() => {
-        getOne.mockImplementation(() => 'getOne')
-        getGraphQLRequest.mockImplementation(query => query)
+        getOne.mockImplementation(() => ['getOne'])
+        getGraphQLRequest.mockImplementation((operationName, _) => operationName)
     })
 
     afterEach(() => {
@@ -203,8 +203,8 @@ describe("getRequest - getOne", () => {
 describe("getRequest - update", () => {
 
     beforeEach(() => {
-        update.mockImplementation(() => 'update')
-        getGraphQLRequest.mockImplementation(query => query)
+        update.mockImplementation(() => ['update'])
+        getGraphQLRequest.mockImplementation((operationName, _) => operationName)
     })
 
     afterEach(() => {
@@ -231,8 +231,8 @@ describe("getRequest - update", () => {
 describe("getRequest - updateMany", () => {
 
     beforeEach(() => {
-        updateMany.mockImplementation(() => 'updateMany')
-        getGraphQLRequest.mockImplementation(query => query)
+        updateMany.mockImplementation(() => ['updateMany'])
+        getGraphQLRequest.mockImplementation((operationName, _) => operationName)
     })
 
     afterEach(() => {
@@ -258,9 +258,8 @@ describe("getRequest - updateMany", () => {
 describe("getRequest - create", () => {
 
     beforeEach(() => {
-        update.mockImplementation(() => 'update')
-        create.mockImplementation(() => 'create')
-        getGraphQLRequest.mockImplementation(query => query)
+        create.mockImplementation(() => ['create'])
+        getGraphQLRequest.mockImplementation((operationName, _) => operationName)
     })
 
     afterEach(() => {

@@ -20,37 +20,37 @@ const getListDefaultRequest = async (resource, params) => {
     const filters = !params.filter ? '' : getDefaultFilters(params.filter)
     const where = `{ ${filters} }`
     const properties = getResourceProperties(resource)
-    const query = getList(resource, where, limit, offset, orderBy, properties)
-    return await getGraphQLRequest(query)
+    const [operationName, query] = getList(resource, where, limit, offset, orderBy, properties)
+    return await getGraphQLRequest(operationName, query)
 }
 
 const getManyDefaultRequest = async (resource, params) => {
     const filters = !params.filter ? '' : getDefaultFilters(params.filter)
     const where = `{ ${filters.concat(`id: { _in: [${params.ids}`)}] } }`
     const properties = getResourceProperties(resource)
-    const query = getMany(resource, where, properties)
-    return await getGraphQLRequest(query)
+    const [operationName, query] = getMany(resource, where, properties)
+    return await getGraphQLRequest(operationName, query)
 }
 
 const getOneDefaultRequest = async (resource, params) => {
     const  properties = getResourceProperties(resource)
-    const query = getOne(resource, params.id, properties)
-    return await getGraphQLRequest(query)
+    const [operationName, query] = getOne(resource, params.id, properties)
+    return await getGraphQLRequest(operationName, query)
 }
 
 const updateDefaultRequest = async (resource, params) => {
-    const query = update(resource, params.id, params.data)
-    return await getGraphQLRequest(query)
+    const [operationName, query] = update(resource, params.id, params.data)
+    return await getGraphQLRequest(operationName, query)
 }
 
 const updateManyDefaultRequest = async (resource, params) => {
-    const query = updateMany(resource, params.ids, params.data)
-    return await getGraphQLRequest(query)
+    const [operationName, query] = updateMany(resource, params.ids, params.data)
+    return await getGraphQLRequest(operationName, query)
 }
 
 const createDefaultRequest = async (resource, params) => {
-    const query = create(resource, params.data)
-    return await getGraphQLRequest(query)
+    const [operationName, query] = create(resource, params.data)
+    return await getGraphQLRequest(operationName, query)
 }
 
 const DEFAULT = 'DEFAULT'

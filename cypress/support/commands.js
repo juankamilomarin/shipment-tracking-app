@@ -32,12 +32,6 @@ Cypress.Commands.add('clickRowEditButton', (tableId, rowIndex) => {
     })
 })
 
-const getOperationName = (query) => 
-    query.replace(/(\r\n|\n|\r)/gm,'')  // Delete line breaks
-        .split('{')[0]                  // Get the string until first {
-            .split(' ')[1]              // Get second word
-
-// TODO Add operation name as part of the query data sent to Hasura
 Cypress.Commands.add('stubGraphQlCalls', () => {
     cy.route2(
         {
@@ -45,8 +39,7 @@ Cypress.Commands.add('stubGraphQlCalls', () => {
             url: 'http://localhost:8080/v1/graphql',
         },
         (req) => {
-            const query = JSON.parse(req.body).query
-            const operationName = getOperationName(query)
+            const operationName = JSON.parse(req.body).operationName
             let fixture
             switch (operationName) {
                 case 'get_list_courier':
