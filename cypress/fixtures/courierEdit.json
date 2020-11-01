@@ -1,0 +1,13 @@
+{
+    "data": {
+        "update_courier": {
+            "returning": [
+                {
+                    "id": 1,
+                    "name": "Amazon",
+                    "active": false
+                }
+            ]
+        }
+    }
+}

@@ -1,6 +1,8 @@
 import React from 'react';
 import LocalShipping from '@material-ui/icons/LocalShipping';
 import CourierList from './CourierList';
+import CourierEdit from './CourierEdit'
+import CourierCreate from './CourierCreate'
 
 export const RESOURCE_PROPERTIES = `
     id
@@ -10,6 +12,8 @@ export const RESOURCE_PROPERTIES = `
 
 const couriers = {
     list: CourierList,
+    edit: CourierEdit,
+    create: CourierCreate,
     icon: () => <div id='courier-icon'><LocalShipping/></div>
 }
 

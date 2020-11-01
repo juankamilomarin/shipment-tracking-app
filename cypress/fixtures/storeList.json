@@ -8,12 +8,12 @@
         "store": [
             {
                 "id": 1,
-                "name": "Amazon",
+                "name": "Barnes & Noble",
                 "active": true
             },
             {
                 "id": 2,
-                "name": "Barnes & Noble",
+                "name": "Amazon",
                 "active": true
             },
             {

@@ -20,6 +20,18 @@ Cypress.Commands.add('checkTableColumns', (tableId, columnNames) => {
     })
 })
 
+Cypress.Commands.add('clickRowEditButton', (tableId, rowIndex) => {
+    cy.get(`#${tableId} tbody tr `).within($rows => {
+        const $columns = $rows[rowIndex].children
+        for (let w = 0; w < $columns.length; w++) {
+            if($columns[w].firstChild.nodeName === 'A' && $columns[w].firstChild.textContent === 'Edit'){
+                cy.wrap($columns[w].firstChild).click()
+                break
+            }
+        }
+    })
+})
+
 const getOperationName = (query) => 
     query.replace(/(\r\n|\n|\r)/gm,'')  // Delete line breaks
         .split('{')[0]                  // Get the string until first {
@@ -38,21 +50,30 @@ Cypress.Commands.add('stubGraphQlCalls', () => {
             let fixture
             switch (operationName) {
                 case 'get_list_courier':
-                    fixture = 'courier.json'
-                    break;
+                    fixture = 'courierList.json'
+                    break
+                case 'get_one_courier':
+                    fixture = 'courierGetOne.json'
+                    break
+                case 'update_courier':
+                    fixture = 'courierEdit.json'
+                    break
                 case 'get_list_store':
-                    fixture = 'store.json'
-                    break;
+                    fixture = 'storeList.json'
+                    break
+                case 'update_store':
+                    fixture = 'storeEdit.json'
+                    break
                 default:
-                    break;
+                    break
             }
             const response = {
-                fixture,
                 headers: {
-                    'access-control-allow-origin': '*' // Avoid CORS issues
-                }
+                    'access-control-allow-origin': '*', // Avoid CORS issues
+                },
+                fixture,
             }
             req.reply(response)
         }
-    )
+    ).as('graphQL')
 })

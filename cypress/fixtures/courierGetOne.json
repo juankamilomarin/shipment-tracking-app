@@ -1,0 +1,11 @@
+{
+    "data": {
+        "courier": [
+            {
+                "id": 1,
+                "name": "Amazon",
+                "active": true
+            }
+        ]
+    }
+}

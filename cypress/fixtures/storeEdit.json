@@ -1,0 +1,13 @@
+{
+    "data": {
+        "update_store": {
+            "returning": [
+                {
+                    "id": 1,
+                    "name": "Barnes & Noble",
+                    "active": false
+                }
+            ]
+        }
+    }
+}
