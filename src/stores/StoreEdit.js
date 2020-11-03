@@ -1,12 +1,12 @@
 import React from 'react';
 import { TextField, Edit, BooleanInput, TextInput, SimpleForm } from 'react-admin';
 
-const CourierTitle = ({ record }) => {
-    return <span>{`Edit Courier - "${record.name}"`}</span>;
+const StoreTitle = ({ record }) => {
+    return <span>{`Edit Store - "${record.name}"`}</span>;
 };
 
-const CourierEdit = props => (
-    <Edit title={<CourierTitle />} undoable={false} {...props}>
+const StoreEdit = props => (
+    <Edit title={<StoreTitle />} undoable={false} {...props}>
         <SimpleForm submitOnEnter={false} redirect="list">
             <TextField source="id" />
             <TextInput source="name" />
@@ -15,4 +15,4 @@ const CourierEdit = props => (
     </Edit>
 );
 
-export default CourierEdit
+export default StoreEdit
