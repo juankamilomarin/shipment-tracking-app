@@ -1,6 +1,6 @@
 import getQuery from './getQuery'
 import * as graphQLQueries from './queries'
-import { getList, getMany, getOne, update, updateMany, create } from './queries'
+import { getList, getMany, getOne, update, updateMany, insert } from './queries'
 import {
     GET_LIST,
     GET_MANY,
@@ -338,7 +338,7 @@ describe("getQuery - updateMany", () => {
 describe("getQuery - create", () => {
 
     beforeEach(() => {
-        create.mockImplementation(() => 'create')
+        insert.mockImplementation(() => 'insert')
     })
 
     afterEach(() => {
@@ -355,11 +355,11 @@ describe("getQuery - create", () => {
             sort: {}
         }
         const [operationName,] = getQuery(CREATE, COURIER, requestParams)
-        expect(operationName).toBe('create_courier')
+        expect(operationName).toBe('insert_courier')
     });
 
     it("should return request with the given resource data", () => {
-        const createSpy = jest.spyOn(graphQLQueries, 'create');
+        const createSpy = jest.spyOn(graphQLQueries, 'insert');
 
         const testData = { test: 'test' }
         const requestParams = {
@@ -368,7 +368,7 @@ describe("getQuery - create", () => {
 
         const [, query] = getQuery(CREATE, COURIER, requestParams)
         expect(createSpy).toBeCalledWith(COURIER, testData)
-        expect(query).toBe('create')
+        expect(query).toBe('insert')
     });
 
 });

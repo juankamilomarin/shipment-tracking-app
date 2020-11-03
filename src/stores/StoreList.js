@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Datagrid, TextField, BooleanField } from 'react-admin';
+import { List, Datagrid, TextField, BooleanField, EditButton } from 'react-admin';
 import StoreFilter from './StoreFilter';
 
 const StoreList = (props) => {
@@ -12,6 +12,7 @@ const StoreList = (props) => {
                 <TextField source="id"/>
                 <TextField source="name" />
                 <BooleanField source="active" />
+                <EditButton id='store-list-edit' />
             </Datagrid>
         </List>
     );

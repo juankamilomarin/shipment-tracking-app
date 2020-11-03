@@ -1,4 +1,4 @@
-import { getList, getMany, getOne, update, updateMany, create, bulkCreate } from './queries'
+import { getList, getMany, getOne, update, updateMany, insert, bulkCreate } from './queries'
 
 describe("GraphQL queries", () => {
 
@@ -113,8 +113,8 @@ describe("GraphQL queries", () => {
         assertQuery(actualResponse, expectedResponse)
     });
 
-    it("create returns expected query", () => {
-        const actualResponse = create(resource, data)
+    it("insert returns expected query", () => {
+        const actualResponse = insert(resource, data)
         const expectedResponse = `
             mutation insert_test_resource{
                 insert_test_resource(

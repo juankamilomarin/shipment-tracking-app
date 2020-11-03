@@ -82,7 +82,7 @@ mutation update_many_${resource}{
 }`
 }
 
-export const create = (resource, propertiesMap) => {
+export const insert = (resource, propertiesMap) => {
     let propertyNames = Object.keys(propertiesMap)
     propertyNames.push('id')
     return `

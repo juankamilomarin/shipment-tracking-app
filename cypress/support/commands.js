@@ -40,22 +40,18 @@ Cypress.Commands.add('stubGraphQlCalls', () => {
         },
         (req) => {
             const operationName = JSON.parse(req.body).operationName
+            const type = operationName.substr(operationName, operationName.lastIndexOf('_'))
+            const resource = operationName.substr(operationName.lastIndexOf('_') + 1)
             let fixture
-            switch (operationName) {
-                case 'get_list_courier':
-                    fixture = 'courierList.json'
+            switch (type) {
+                case 'get_list':
+                    fixture = `${resource}List.json`
                     break
-                case 'get_one_courier':
-                    fixture = 'courierGetOne.json'
+                case 'get_one':
+                    fixture = `${resource}GetOne.json`
                     break
-                case 'update_courier':
-                    fixture = 'courierEdit.json'
-                    break
-                case 'get_list_store':
-                    fixture = 'storeList.json'
-                    break
-                case 'update_store':
-                    fixture = 'storeEdit.json'
+                case 'update':
+                    fixture = `${resource}Edit.json`
                     break
                 default:
                     break

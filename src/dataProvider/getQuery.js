@@ -1,7 +1,7 @@
 import { CREATE, GET_LIST, GET_MANY, GET_ONE, UPDATE, UPDATE_MANY } from "react-admin";
 import CustomError, { ERROR_TYPES } from "../util/CustomError";
 import getDefaultFilters from "./getDefaultFilters";
-import { create, getList, getMany, getOne, update, updateMany } from "./queries";
+import { insert, getList, getMany, getOne, update, updateMany } from "./queries";
 import { getResourceProperties } from "./resources";
 
 const getListArguments = (params) => {
@@ -48,8 +48,8 @@ const getQuery = (type, resource, params) => {
             query = updateMany(resource, params.ids, params.data)
             break;
         case CREATE:
-            operationName = `create_${resource}`
-            query = create(resource, params.data)
+            operationName = `insert_${resource}`
+            query = insert(resource, params.data)
             break;
         default:
             throw new CustomError(ERROR_TYPES.METHOD_REQUEST_NOT_IMPLEMENTED, `Method ${type} not implemented`)

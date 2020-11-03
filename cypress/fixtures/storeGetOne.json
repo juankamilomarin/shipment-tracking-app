@@ -1,0 +1,11 @@
+{
+    "data": {
+        "store": [
+            {
+                "id": 1,
+                "name": "Barnes & Noble",
+                "active": true
+            }
+        ]
+    }
+}
