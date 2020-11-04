@@ -32,25 +32,58 @@ Cypress.Commands.add('clickRowEditButton', (tableId, rowIndex) => {
     })
 })
 
+const GET_LIST = 'get_list'
+const GET_MANY = 'get_many'
+const GET_ONE = 'get_one'
+const UPDATE = 'update'
+const UPDATE_MANY = 'update_many'
+const INSERT = 'insert'
+
+const getTypeAndResource = (operationName) => {
+    let type, resource
+    if(operationName.indexOf(`${GET_LIST}_`) === 0){
+        type = GET_LIST
+        resource = operationName.substr(GET_LIST.length + 1)
+    } else if(operationName.indexOf(`${GET_MANY}_`) === 0){
+        type = GET_MANY
+        resource = operationName.substr(GET_MANY.length + 1)
+    } else if(operationName.indexOf(`${GET_ONE}_`) === 0){
+        type = GET_ONE
+        resource = operationName.substr(GET_ONE.length + 1)
+    } else if(operationName.indexOf(`${UPDATE}_`) === 0){
+        type = UPDATE
+        resource = operationName.substr(UPDATE.length + 1)
+    } else if(operationName.indexOf(`${UPDATE_MANY}_`) === 0){
+        type = UPDATE_MANY
+        resource = operationName.substr(UPDATE_MANY.length + 1)
+    } else if(operationName.indexOf(`${INSERT}_`) === 0){
+        type = INSERT
+        resource = operationName.substr(INSERT.length + 1)
+    }
+    return [type, resource]
+}
+
 Cypress.Commands.add('stubGraphQlCalls', () => {
-    cy.route2(
+    return cy.route2(
         {
             method: 'POST',
             url: 'http://localhost:8080/v1/graphql',
         },
         (req) => {
             const operationName = JSON.parse(req.body).operationName
-            const type = operationName.substr(operationName, operationName.lastIndexOf('_'))
-            const resource = operationName.substr(operationName.lastIndexOf('_') + 1)
+            const [type, resource] = getTypeAndResource(operationName)
             let fixture
             switch (type) {
-                case 'get_list':
+                case GET_LIST:
                     fixture = `${resource}List.json`
                     break
-                case 'get_one':
+                case GET_MANY:
+                    fixture = `${resource}Many.json`
+                    break
+                case GET_ONE:
                     fixture = `${resource}GetOne.json`
                     break
-                case 'update':
+                case UPDATE:
                     fixture = `${resource}Edit.json`
                     break
                 default:
@@ -64,5 +97,5 @@ Cypress.Commands.add('stubGraphQlCalls', () => {
             }
             req.reply(response)
         }
-    ).as('graphQL')
+    )
 })
