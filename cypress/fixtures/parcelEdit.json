@@ -1,0 +1,14 @@
+{
+    "data": {
+        "update_parcel": {
+            "returning": [
+                {
+                    "id": 1,
+                    "name": "Appliances for the house",
+                    "opening_date": "2020-05-20",
+                    "closing_date": "2020-05-27"
+                }
+            ]
+        }
+    }
+}

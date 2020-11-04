@@ -1,6 +1,7 @@
 import { CREATE, GET_LIST, GET_MANY, GET_ONE, UPDATE, UPDATE_MANY } from "react-admin";
 import CustomError, { ERROR_TYPES } from "../util/CustomError";
 
+// TODO fix locale for dates
 export const getDefaultGraphQLResponse = (type, resource, responseData) => {
     let response
     switch (type) {

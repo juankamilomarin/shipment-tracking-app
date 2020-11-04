@@ -27,3 +27,19 @@ alter table courier
 
 create unique index courier_id_uindex
     on courier (id);
+
+create table parcel
+(
+    id     serial               not null
+        constraint parcel_pk
+            primary key,
+    name   varchar              not null,
+    opening_date date           not null,
+    closing_date date           null
+);
+
+alter table parcel
+    owner to postgres;
+
+create unique index parcel_id_uindex
+    on parcel (id);

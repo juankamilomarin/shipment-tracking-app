@@ -24,7 +24,7 @@ Cypress.Commands.add('clickRowEditButton', (tableId, rowIndex) => {
     cy.get(`#${tableId} tbody tr `).within($rows => {
         const $columns = $rows[rowIndex].children
         for (let w = 0; w < $columns.length; w++) {
-            if($columns[w].firstChild.nodeName === 'A' && $columns[w].firstChild.textContent === 'Edit'){
+            if($columns[w].firstChild && $columns[w].firstChild.nodeName === 'A' && $columns[w].firstChild.textContent === 'Edit'){
                 cy.wrap($columns[w].firstChild).click()
                 break
             }

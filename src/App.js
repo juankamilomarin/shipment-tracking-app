@@ -14,12 +14,13 @@ import customDataProvider from './dataProvider/customDataProvider';
 
 import couriers from './couriers'
 import stores from './stores'
-import { COURIER } from './dataProvider/resources'
-import { STORE } from './dataProvider/resources'
+import parcels from './parcels'
+import { COURIER, STORE, PARCEL } from './dataProvider/resources'
 
 const resources = [
     <Resource name={COURIER} {...couriers} key={`${COURIER}-resource`}/>,
     <Resource name={STORE} {...stores} key={`${STORE}-resource`}/>,
+    <Resource name={PARCEL} {...parcels} key={`${PARCEL}-resource`}/>,
 ]
 
 const App = () => (

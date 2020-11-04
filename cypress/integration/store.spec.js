@@ -22,7 +22,7 @@ describe('Store', () => {
     })
 
     it('should load edit screen with id field and name and active inputs', () => {
-        cy.clickRowEditButton('store-table', 1)
+        cy.clickRowEditButton('store-table', 0)
         cy.get('span[id = "id"]').should('exist')
         cy.get('input[name = "name"]').should('exist')
         cy.get('input[name = "active"]').should('exist')

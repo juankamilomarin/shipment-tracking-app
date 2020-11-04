@@ -23,7 +23,7 @@ describe('Courier', () => {
     })
 
     it('should load edit screen with id field and name and active inputs', () => {
-        cy.clickRowEditButton('courier-table', 1)
+        cy.clickRowEditButton('courier-table', 0)
         cy.get('span[id = "id"]').should('exist')
         cy.get('input[name = "name"]').should('exist')
         cy.get('input[name = "active"]').should('exist')
