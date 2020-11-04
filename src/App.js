@@ -15,12 +15,14 @@ import customDataProvider from './dataProvider/customDataProvider';
 import couriers from './couriers'
 import stores from './stores'
 import parcels from './parcels'
-import { COURIER, STORE, PARCEL } from './dataProvider/resources'
+import storeOrders from './storeOrders'
+import { COURIER, STORE, PARCEL, STORE_ORDER } from './dataProvider/resources'
 
 const resources = [
     <Resource name={COURIER} {...couriers} key={`${COURIER}-resource`}/>,
     <Resource name={STORE} {...stores} key={`${STORE}-resource`}/>,
     <Resource name={PARCEL} {...parcels} key={`${PARCEL}-resource`}/>,
+    <Resource name={STORE_ORDER} {...storeOrders} key={`${STORE_ORDER}-resource`}/>,
 ]
 
 const App = () => (

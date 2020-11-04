@@ -1,0 +1,21 @@
+{
+    "data": {
+        "update_store_order": {
+            "returning": [
+                {
+                    "id": 1,
+                    "parcel_id": 1,
+                    "item_name": "Alexa Echo Dot",
+                    "store_id": 1,
+                    "cost": 31.8,
+                    "weight": 2,
+                    "order_date": "2020-05-19",
+                    "courier_id": 1,
+                    "tracking_id": "TBA034667709301",
+                    "shipping_date": "2020-05-20",
+                    "delivery_date": "2020-05-21"
+                }
+            ]
+        }
+    }
+}
