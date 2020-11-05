@@ -11,6 +11,7 @@ import React from 'react';
 import { Admin, Resource } from 'react-admin';
 
 import customDataProvider from './dataProvider/customDataProvider';
+import theme from './design/theme';
 
 import couriers from './couriers'
 import stores from './stores'
@@ -26,7 +27,10 @@ const resources = [
 ]
 
 const App = () => (
-    <Admin dataProvider={customDataProvider}>
+    <Admin 
+        dataProvider={customDataProvider}
+        theme={theme}
+    >
         {resources}
     </Admin>
 )
