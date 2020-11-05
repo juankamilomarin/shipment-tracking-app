@@ -1,5 +1,4 @@
 // TODO: Implement i8n provider
-// TODO: Implement a theme
 // TODO: Add more resources
 // TODO: Add custom pagination
 // TODO: Implement login page
