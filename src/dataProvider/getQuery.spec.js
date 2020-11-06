@@ -1,13 +1,26 @@
 import getQuery from './getQuery'
 import * as graphQLQueries from './queries'
-import { getList, getMany, getOne, update, updateMany, insert } from './queries'
+import { 
+    getList,
+    getMany,
+    getManyReference,
+    getOne,
+    update,
+    updateMany,
+    insert,
+    deleteQuery,
+    deleteMany
+} from './queries'
 import {
     GET_LIST,
     GET_MANY,
     GET_ONE,
     UPDATE,
     UPDATE_MANY,
-    CREATE
+    CREATE,
+    GET_MANY_REFERENCE,
+    DELETE_MANY,
+    DELETE
 } from 'react-admin'
 import { COURIER } from './resources'
 import { RESOURCE_PROPERTIES } from '../couriers'
@@ -222,6 +235,151 @@ describe("getQuery - getMany", () => {
 
 });
 
+describe("getQuery - getManyReference", () => {
+
+    beforeEach(() => {
+        getManyReference.mockImplementation(() => 'getManyReference')
+    })
+
+    afterEach(() => {
+        jest.clearAllMocks()
+    })
+
+    
+    it("should return operation name", () => {
+        const requestParams = {
+            pagination: {
+                perPage: 100,
+                page: 1
+            },
+            filter: {},
+            sort: {}
+        }
+        const [operationName,] = getQuery(GET_MANY_REFERENCE, COURIER, requestParams)
+        expect(operationName).toBe('get_many_reference_courier')
+    });
+
+    it("should return query with target id condition when filter parameter is empty", () => {
+        const getManyReferenceSpy = jest.spyOn(graphQLQueries, 'getManyReference');
+        const requestParams = {
+            pagination: {
+                perPage: 100,
+                page: 1
+            },
+            filter: {},
+            sort: {},
+            id: 123,
+            target: 'target_id'
+        }
+        const [, query] = getQuery(GET_MANY_REFERENCE, COURIER, requestParams)
+        const expectedQueryArguments = { 
+            where: "{ target_id: { _eq: 123 }, }", 
+            limit: 100, 
+            offset: 0, 
+            orderBy: "{}"
+        }
+        expect(getManyReferenceSpy).toBeCalledWith(COURIER, RESOURCE_PROPERTIES, expectedQueryArguments)
+        expect(query).toBe('getManyReference')
+    });
+
+    it("should return query with target id condition when filter parameter is not provided", () => {
+        const getManyReferenceSpy = jest.spyOn(graphQLQueries, 'getManyReference');
+        const requestParams = {
+            pagination: {
+                perPage: 100,
+                page: 1
+            },
+            sort: {},
+            id: 123,
+            target: 'target_id'
+        }
+        const [, query] = getQuery(GET_MANY_REFERENCE, COURIER, requestParams)
+        const expectedQueryArguments = { 
+            where: "{ target_id: { _eq: 123 }, }", 
+            limit: 100, 
+            offset: 0, 
+            orderBy: "{}"
+        }
+        expect(getManyReferenceSpy).toBeCalledWith(COURIER, RESOURCE_PROPERTIES, expectedQueryArguments)
+        expect(query).toBe('getManyReference')
+    });
+
+    it("should return query with target id and other conditions when filter parameter is provided", () => {
+        const getManyReferenceSpy = jest.spyOn(graphQLQueries, 'getManyReference');
+        const filters = {
+            filter1: 'filter 1',
+            filter2: 'filter 2'
+        }
+        let requestParams = {
+            pagination: {
+                perPage: 100,
+                page: 1
+            },
+            filter: filters,
+            sort: {},
+            id: 123,
+            target: 'target_id'
+        }
+        const [, query] = getQuery(GET_MANY_REFERENCE, COURIER, requestParams)
+        const expectedQueryArguments = { 
+            where: "{ filter1: { _eq: \"filter 1\" },filter2: { _eq: \"filter 2\" },target_id: { _eq: 123 }, }", 
+            limit: 100, 
+            offset: 0, 
+            orderBy: "{}"
+        }
+        expect(getManyReferenceSpy).toBeCalledWith(COURIER, RESOURCE_PROPERTIES, expectedQueryArguments)
+        expect(query).toBe('getManyReference')
+    });
+
+    it("should return query with order clause when sort parameter is provided", () => {
+        const getManyReferenceSpy = jest.spyOn(graphQLQueries, 'getManyReference');
+        const requestParams = {
+            pagination: {
+                perPage: 100,
+                page: 1
+            },
+            sort: {
+                field: 'name',
+                order: 'DESC'
+            },
+            id: 123,
+            target: 'target_id'
+        }
+        const [, query] = getQuery(GET_MANY_REFERENCE, COURIER, requestParams)
+        const expectedQueryArguments = { 
+            where: "{ target_id: { _eq: 123 }, }", 
+            limit: 100, 
+            offset: 0, 
+            orderBy: "{name: desc}"
+        }
+        expect(getManyReferenceSpy).toBeCalledWith(COURIER, RESOURCE_PROPERTIES, expectedQueryArguments)
+        expect(query).toBe('getManyReference')
+    });
+
+    it("should return query with pagination", () => {
+        const getManyReferenceSpy = jest.spyOn(graphQLQueries, 'getManyReference');
+        const requestParams = {
+            pagination: {
+                perPage: 40,
+                page: 3
+            },
+            sort: {},
+            id: 123,
+            target: 'target_id'
+        }
+        const [, query] = getQuery(GET_MANY_REFERENCE, COURIER, requestParams)
+        const expectedQueryArguments = { 
+            where: "{ target_id: { _eq: 123 }, }", 
+            limit: 40, 
+            offset: 80, 
+            orderBy: "{}"
+        }
+        expect(getManyReferenceSpy).toBeCalledWith(COURIER, RESOURCE_PROPERTIES, expectedQueryArguments)
+        expect(query).toBe('getManyReference')
+    });
+
+});
+
 describe("getQuery - getOne", () => {
 
     beforeEach(() => {
@@ -369,6 +527,81 @@ describe("getQuery - create", () => {
         const [, query] = getQuery(CREATE, COURIER, requestParams)
         expect(createSpy).toBeCalledWith(COURIER, testData)
         expect(query).toBe('insert')
+    });
+
+});
+
+
+describe("getQuery - delete", () => {
+
+    beforeEach(() => {
+        deleteQuery.mockImplementation(() => 'deleteQuery')
+    })
+
+    afterEach(() => {
+        jest.clearAllMocks()
+    })
+
+    it("should return operation name", () => {
+        const requestParams = {
+            pagination: {
+                perPage: 100,
+                page: 1
+            },
+            filter: {},
+            sort: {}
+        }
+        const [operationName,] = getQuery(DELETE, COURIER, requestParams)
+        expect(operationName).toBe('delete_courier')
+    });
+
+    it("should return query for a given resource id", () => {
+        const deleteQuerySpy = jest.spyOn(graphQLQueries, 'deleteQuery');
+        const testId = 1
+        const requestParams = {
+            id: testId
+        }
+        const [, query] = getQuery(DELETE, COURIER, requestParams)
+        expect(deleteQuerySpy).toBeCalledWith(COURIER, testId)
+        expect(query).toBe('deleteQuery')
+    });
+
+});
+
+describe("getQuery - deleteMany", () => {
+
+    beforeEach(() => {
+        deleteMany.mockImplementation(() => 'deleteMany')
+    })
+
+    afterEach(() => {
+        jest.clearAllMocks()
+    })
+
+    it("should return operation name", () => {
+        const requestParams = {
+            pagination: {
+                perPage: 100,
+                page: 1
+            },
+            filter: {},
+            sort: {}
+        }
+        const [operationName,] = getQuery(DELETE_MANY, COURIER, requestParams)
+        expect(operationName).toBe('delete_many_courier')
+    });
+
+    it("should return request for a given list of resource ids", () => {
+        const deleteManySpy = jest.spyOn(graphQLQueries, 'deleteMany');
+        
+        const testIds = [1,2,3]
+        const requestParams = {
+            ids: testIds
+        }
+
+        const [, query] = getQuery(DELETE_MANY, COURIER, requestParams)
+        expect(deleteManySpy).toBeCalledWith(COURIER, testIds)
+        expect(query).toBe('deleteMany')
     });
 
 });

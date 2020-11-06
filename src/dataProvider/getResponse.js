@@ -4,7 +4,10 @@ import {
     GET_ONE,
     UPDATE,
     UPDATE_MANY,
-    CREATE
+    CREATE,
+    GET_MANY_REFERENCE,
+    DELETE,
+    DELETE_MANY
 } from 'react-admin'
 import CustomError from '../util/CustomError'
 import { ERROR_TYPES } from '../util/CustomError'
@@ -22,6 +25,9 @@ const CUSTOM_RESPONSE_METHODS = {
     [UPDATE]: {},
     [UPDATE_MANY]: {},
     [CREATE]: {},
+    [GET_MANY_REFERENCE]: {},
+    [DELETE]: {},
+    [DELETE_MANY]: {},
 }
 
 const getResponse = (responseData, type, resource) => {

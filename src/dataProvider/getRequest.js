@@ -4,7 +4,10 @@ import {
     GET_ONE,
     UPDATE,
     UPDATE_MANY,
-    CREATE
+    CREATE,
+    GET_MANY_REFERENCE,
+    DELETE,
+    DELETE_MANY
 } from 'react-admin'
 import checkMethodType from './checkMethodType'
 import { getDefaultGraphQLRequest } from './graphQLRequest'
@@ -16,6 +19,9 @@ const CUSTOM_REQUEST_METHODS = {
     [UPDATE]: {},
     [UPDATE_MANY]: {},
     [CREATE]: {},
+    [GET_MANY_REFERENCE]: {},
+    [DELETE]: {},
+    [DELETE_MANY]: {},
 }
 
 const getRequest = async (type, resource, params) => {

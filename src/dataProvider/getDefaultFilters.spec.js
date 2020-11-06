@@ -24,9 +24,15 @@ describe("getDefaultFilters", () => {
         expect(actualFilters).toStrictEqual(expectedFilters)
     });
 
-    it("should not fail if no filters are provided", () => {
+    it("should return empty string if no filters are provided", () => {
         const testFilters = { }
         const actualFilters = getDefaultFilters(testFilters)
+        const expectedFilters = ''
+        expect(actualFilters).toStrictEqual(expectedFilters)
+    });
+
+    it("should return empty string if filters object is not present", () => {
+        const actualFilters = getDefaultFilters(undefined)
         const expectedFilters = ''
         expect(actualFilters).toStrictEqual(expectedFilters)
     });

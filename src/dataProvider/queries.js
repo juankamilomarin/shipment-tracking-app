@@ -36,6 +36,24 @@ query get_many_${resource}
     }
 }`
 
+export const getManyReference = (resource, properties, queryArguments) => `
+query get_many_reference_${resource}
+{
+    ${resource}_aggregate(where: ${queryArguments.where}) {
+        aggregate {
+            totalCount: count
+        }
+    }
+    ${resource}(
+        where: ${queryArguments.where},
+        limit: ${queryArguments.limit},
+        offset: ${queryArguments.offset},
+        order_by: ${queryArguments.orderBy}
+    ) {
+        ${properties}
+    }
+}`
+
 export const getOne = (resource, properties, id) => `
 query get_one_${resource}
 {
@@ -92,6 +110,36 @@ mutation insert_${resource}{
     ){
         returning {
             ${propertyNames}
+        }
+    }
+}`
+}
+
+export const deleteQuery = (resource, id) => {
+    return `
+mutation delete_${resource}{
+    delete_${resource}(
+        where: { 
+            id: { _eq: ${id} } 
+        }
+    ){
+        returning {
+            id
+        }
+    }
+}`
+}
+
+export const deleteMany = (resource, ids) => {
+    return `
+mutation delete_many_${resource}{
+    delete_${resource}(
+        where: { 
+            id: { _in: [${ids}] } 
+        }
+    ){
+        returning {
+            id
         }
     }
 }`
