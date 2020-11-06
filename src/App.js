@@ -1,4 +1,3 @@
-// TODO: Add more resources
 // TODO: Add custom pagination
 // TODO: Implement login page
 // TODO: Implement authentication

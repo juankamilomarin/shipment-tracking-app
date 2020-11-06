@@ -1,21 +1,23 @@
 import customDataProvider from './customDataProvider'
 import * as getRequest from './getRequest'      // Alias is needed to spy on it
 import * as getResponse from './getResponse'    // Alias is needed to spy on it
+import { GET_ONE, GET_LIST, GET_MANY } from 'react-admin'
+import { DateTime } from 'luxon'
 
 jest.mock('./getRequest')
 jest.mock('./getResponse')
 
-const type = 'test type'
-const resource = 'test resouce'
-const params = 'test params'
-
 describe("customDataProvider", () => {
+
+    const type = 'test type'
+    const resource = 'test resouce'
+    const params = 'test params'
+    const getRequestResult = 'getRequest'
 
     beforeAll(() => {
         global.fetch = jest.fn()
     })
 
-    const getRequestResult = 'getRequest'
     beforeEach(() => {
         getRequest.default.mockImplementation(() => Promise.resolve(getRequestResult))
         getResponse.default.mockImplementation((responseData, type, resource) => ({ responseData, type, resource }))
@@ -60,5 +62,33 @@ describe("customDataProvider", () => {
         await customDataProvider(type, resource, params).catch(error => {
             expect(error.message).toBe(expectedErrorMessage)
         })
+    });
+
+    it("should cache response for GET_ONE method type", async () => {
+        const fetchMock = () => Promise.resolve({ 
+            json: () => Promise.resolve({})
+        })
+        global.fetch.mockImplementation(fetchMock)
+        const actualResponse = await customDataProvider(GET_ONE, resource, params)
+        expect(actualResponse.validUntil).toBeInstanceOf(DateTime)
+    });
+
+    it("should cache response for GET_LIST method type", async () => {
+        const fetchMock = () => Promise.resolve({ 
+            json: () => Promise.resolve({})
+        })
+        global.fetch.mockImplementation(fetchMock)
+        const actualResponse = await customDataProvider(GET_LIST, resource, params)
+        expect(actualResponse.validUntil).toBeInstanceOf(DateTime)
+    });
+
+    it("should cache response for GET_MANY method type", async () => {
+        const fetchMock = () => Promise.resolve({ 
+            json: () => Promise.resolve({})
+        })
+        global.fetch.mockImplementation(fetchMock)
+        const actualResponse = await customDataProvider(GET_MANY, resource, params)
+        console.log(actualResponse.validUntil)
+        expect(actualResponse.validUntil).toBeInstanceOf(DateTime)
     });
 });
