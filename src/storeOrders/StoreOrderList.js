@@ -11,8 +11,8 @@ import {
 
 const StoreOrderList = (props) => {
     return (
-        <List id='store_order-list' bulkActionButtons={ false } {...props}>
-            <Datagrid id='store_order-table'>
+        <List id='order-list' bulkActionButtons={ false } {...props}>
+            <Datagrid id='order-table'>
                 <TextField source="id"/>
                 <TextField source="item_name"/>
                 <ReferenceField source="parcel_id" reference="parcel">
@@ -30,7 +30,7 @@ const StoreOrderList = (props) => {
                 <TextField label="Tracking id" source="tracking_id"/>
                 <DateField source="shipping_date" />
                 <DateField source="delivery_date" />
-                <EditButton id='store_order-list-edit' />
+                <EditButton id='order-list-edit' />
             </Datagrid>
         </List>
     );

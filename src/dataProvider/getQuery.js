@@ -22,7 +22,7 @@ import {
     deleteQuery,
     deleteMany
 } from "./queries";
-import { getResourceProperties } from "./resources";
+import { getGraphQLResource, getResourceProperties } from "./resources";
 
 const getPagination = (params) => {
     const offset = (params.pagination.page * params.pagination.perPage) - params.pagination.perPage;
@@ -58,50 +58,48 @@ const getManyReferenceArguments = (params) => {
 }
 
 const getQuery = (type, resource, params) => {
-    let operationName, query, queryArguments, properties
+    let operationName, query, queryArguments
+    const properties = getResourceProperties(resource)
+    const graphQLResource = getGraphQLResource(resource)
     switch (type) {
         case GET_LIST:
-            operationName = `get_list_${resource}`
-            properties = getResourceProperties(resource)
+            operationName = `get_list_${graphQLResource}`
             queryArguments = getListArguments(params)
-            query = getList(resource, properties, queryArguments)
+            query = getList(graphQLResource, properties, queryArguments)
             break;
         case GET_MANY:
-            operationName = `get_many_${resource}`
-            properties = getResourceProperties(resource)
+            operationName = `get_many_${graphQLResource}`
             queryArguments = getManyArguments(params)
-            query = getMany(resource, properties, queryArguments)
+            query = getMany(graphQLResource, properties, queryArguments)
             break;
         case GET_MANY_REFERENCE:
-            operationName = `get_many_reference_${resource}`
-            properties = getResourceProperties(resource)
+            operationName = `get_many_reference_${graphQLResource}`
             queryArguments = getManyReferenceArguments(params)
-            query = getManyReference(resource, properties, queryArguments)
+            query = getManyReference(graphQLResource, properties, queryArguments)
             break;
         case GET_ONE:
-            operationName = `get_one_${resource}`
-            properties = getResourceProperties(resource)
-            query = getOne(resource, properties, params.id)
+            operationName = `get_one_${graphQLResource}`
+            query = getOne(graphQLResource, properties, params.id)
             break;
         case UPDATE:
-            operationName = `update_${resource}`
-            query = update(resource, params.id, params.data)
+            operationName = `update_${graphQLResource}`
+            query = update(graphQLResource, params.id, params.data)
             break;
         case UPDATE_MANY:
-            operationName = `update_many_${resource}`
-            query = updateMany(resource, params.ids, params.data)
+            operationName = `update_many_${graphQLResource}`
+            query = updateMany(graphQLResource, params.ids, params.data)
             break;
         case CREATE:
-            operationName = `insert_${resource}`
-            query = insert(resource, params.data)
+            operationName = `insert_${graphQLResource}`
+            query = insert(graphQLResource, params.data)
             break;
         case DELETE:
-            operationName = `delete_${resource}`
-            query = deleteQuery(resource, params.id)
+            operationName = `delete_${graphQLResource}`
+            query = deleteQuery(graphQLResource, params.id)
             break;
         case DELETE_MANY:
-            operationName = `delete_many_${resource}`
-            query = deleteMany(resource, params.ids)
+            operationName = `delete_many_${graphQLResource}`
+            query = deleteMany(graphQLResource, params.ids)
             break;
         default:
             throw new CustomError(ERROR_TYPES.METHOD_REQUEST_NOT_IMPLEMENTED, `Method ${type} not implemented`)

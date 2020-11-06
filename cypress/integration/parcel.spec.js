@@ -39,7 +39,7 @@ describe('Store', () => {
         cy.get('span[id = "name"]').should('exist')
         cy.get('span[id = "opening_date"]').should('exist')
         cy.get('span[id = "closing_date"]').should('exist')
-        cy.get('a[id = "parce-show-store_order-tab"]').click()
+        cy.get('a[id = "parce-show-order-tab"]').click()
         // Wait for other resources to finish loading before asserting fields
         cy.get('span:contains("Amazon")').should('exist')
         cy.get('span:contains("UPS")').should('exist')

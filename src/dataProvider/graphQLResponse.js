@@ -10,31 +10,33 @@ import {
     DELETE_MANY
 } from "react-admin";
 import CustomError, { ERROR_TYPES } from "../util/CustomError";
+import { getGraphQLResource } from "./resources";
 
 // TODO fix locale for dates
 export const getDefaultGraphQLResponse = (type, resource, responseData) => {
     let response
+    const graphQLResource = getGraphQLResource(resource)
     switch (type) {
         case GET_LIST:
         case GET_MANY:
         case GET_MANY_REFERENCE:
             response = {
-                data: responseData.data[resource],
-                total: responseData.data[`${resource}_aggregate`].aggregate.totalCount
+                data: responseData.data[graphQLResource],
+                total: responseData.data[`${graphQLResource}_aggregate`].aggregate.totalCount
             }
             break;
         case GET_ONE:
             response = {
-                data: responseData.data[resource][0]
+                data: responseData.data[graphQLResource][0]
             }
             break;
         case UPDATE:
             response = {
-                data: responseData.data[`update_${resource}`].returning[0]
+                data: responseData.data[`update_${graphQLResource}`].returning[0]
             }
             break;
         case UPDATE_MANY:
-            const updatedIds = responseData.data[`update_${resource}`].returning.map((item) => {
+            const updatedIds = responseData.data[`update_${graphQLResource}`].returning.map((item) => {
                 return item.id;
             })
             response = {
@@ -43,16 +45,16 @@ export const getDefaultGraphQLResponse = (type, resource, responseData) => {
             break;
         case CREATE:
             response = {
-                data: responseData.data[`insert_${resource}`].returning[0]
+                data: responseData.data[`insert_${graphQLResource}`].returning[0]
             }
             break;
         case DELETE:
             response = {
-                data: responseData.data[`delete_${resource}`].returning[0]
+                data: responseData.data[`delete_${graphQLResource}`].returning[0]
             }
             break;
         case DELETE_MANY:
-            const deletedIds = responseData.data[`delete_${resource}`].returning.map((item) => {
+            const deletedIds = responseData.data[`delete_${graphQLResource}`].returning.map((item) => {
                 return item.id;
             })
             response = {

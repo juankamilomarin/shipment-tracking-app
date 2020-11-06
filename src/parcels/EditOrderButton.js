@@ -9,7 +9,7 @@ const EditOrderButton = ({ record }) => {
     return (
     <Button
         component={Link}
-        to={`/store_order/${record.id}?parcel_id=${record.parcel_id}`}
+        to={`/order/${record.id}?parcel_id=${record.parcel_id}`}
         label='ra.action.edit'
         onClick={stopPropagation}
     >

@@ -15,7 +15,7 @@ const AddOrderButton = ({ classes, record }) => (
         className={classes.button}
         variant='raised'
         component={Link}
-        to={`/store_order/create?parcel_id=${record.id}`}
+        to={`/order/create?parcel_id=${record.id}`}
         label='Add an order'
         title='Add an order'
     >

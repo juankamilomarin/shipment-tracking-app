@@ -1,32 +1,32 @@
 /// <reference types="cypress" />
 /*global cy*/
 
-describe('Store Order', () => {
+describe('Orders', () => {
     beforeEach(() => {
         cy.stubGraphQlCalls()
-        cy.visit('/#/store_order')
+        cy.visit('/#/order')
         cy.get('[href="#/parcel/1"]', { timeout: 10000 }).should('be.visible')
         cy.get('[href="#/store/1"]', { timeout: 10000 }).should('be.visible')
         cy.get('[href="#/courier/1"]', { timeout: 10000 }).should('be.visible')
     })
 
     it('should load store orders icon', () => {
-        cy.get('#store_order-icon').should('exist')
+        cy.get('#order-icon').should('exist')
     })
 
     it('should load table with its filters', () => {
-        cy.get('#store_order-list').within(() => {
+        cy.get('#order-list').within(() => {
             let expectedColumnNames = [
                 'Id', 'Item name', 'Parcel', 'Store', 'Cost', 
                 'Weight', 'Order date', 'Courier', 'Tracking id', 
                 'Shipping date', 'Delivery date', ''
             ]
-            cy.checkTableColumns('store_order-table', expectedColumnNames)
+            cy.checkTableColumns('order-table', expectedColumnNames)
         })
     })
 
     it('should load edit screen with fields and inputs', () => {
-        cy.clickRowEditButton('store_order-table', 0)
+        cy.clickRowEditButton('order-table', 0)
         // Wait for other resources to finish loading before asserting inputs
         cy.get('div[id = "parcel_id"]').should('have.html', 'Appliances for the house')
         cy.get('div[id = "store_id"]').should('have.html', 'Barnes &amp; Noble')
@@ -46,7 +46,7 @@ describe('Store Order', () => {
     })
 
     it('should load create screen with name and active inputs', () => {
-        cy.get('[href="#/store_order/create"]').click()
+        cy.get('[href="#/order/create"]').click()
         // Wait for other resources to finish loading before asserting inputs
         cy.get('div[id = "parcel_id"]').should('exist')
         cy.get('div[id = "store_id"]').should('exist')

@@ -26,10 +26,10 @@ const ParcelShow = props => (
                 <DateField source="opening_date" id="opening_date" />
                 <DateField source="closing_date" id="closing_date" />
             </Tab>
-            <Tab label="Orders" path="store_order" id='parce-show-store_order-tab'>
+            <Tab label="Orders" path="order" id='parce-show-order-tab'>
                 <ReferenceManyField
                     addLabel={false}
-                    reference="store_order"
+                    reference="order"
                     target="parcel_id"
                     sort={{ field: 'order_date', order: 'ASC' }}
                 >

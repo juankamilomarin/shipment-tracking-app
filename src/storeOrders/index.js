@@ -22,7 +22,7 @@ const stores = {
     list: StoreOrderList,
     edit: StoreOrderEdit,
     create: StoreOrderCreate,
-    icon: () => <div id='store_order-icon'><AssignmentIcon/></div>
+    icon: () => <div id='order-icon'><AssignmentIcon/></div>
 }
 
 export default stores

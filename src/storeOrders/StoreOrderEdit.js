@@ -20,7 +20,7 @@ const StoreOrderEdit = props => {
     let redirect = 'list'
     if(parcel_id_string){
         const parcel_id = parseInt(parcel_id_string, 10)
-        redirect = `/parcel/${parcel_id}/show/store_order`
+        redirect = `/parcel/${parcel_id}/show/order`
     }
     return (
         <Edit title={<StoreOrderTitle />} undoable={false} {...props}>

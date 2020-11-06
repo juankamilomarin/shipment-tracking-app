@@ -30,7 +30,7 @@ const StoreOrderCreate = props => {
         disableParcelInput = false
     if(parcel_id_string){
         parcel_id = parseInt(parcel_id_string, 10)
-        redirect = `/parcel/${parcel_id}/show/store_order`
+        redirect = `/parcel/${parcel_id}/show/order`
         disableParcelInput = true
     }
     return (
@@ -41,7 +41,7 @@ const StoreOrderCreate = props => {
                 validate={validateCreation}
                 redirect={redirect}
             >
-                <TextInput source="item_name" id='store_order-create-item_name-input' />
+                <TextInput source="item_name" id='order-create-item_name-input' />
                 <ReferenceInput source="parcel_id" reference="parcel" >
                     <SelectInput source="name" disabled={disableParcelInput} />
                 </ReferenceInput>
