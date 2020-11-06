@@ -88,7 +88,6 @@ describe("customDataProvider", () => {
         })
         global.fetch.mockImplementation(fetchMock)
         const actualResponse = await customDataProvider(GET_MANY, resource, params)
-        console.log(actualResponse.validUntil)
         expect(actualResponse.validUntil).toBeInstanceOf(DateTime)
     });
 });
