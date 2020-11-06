@@ -1,7 +1,6 @@
 import React from 'react';
 import { Create, TextInput, SimpleForm, DateInput } from 'react-admin';
 
-// TODO add validation messages (i8n)
 const validateCreation = (values) => {
     const errors = {};
     if (!values.name) {
