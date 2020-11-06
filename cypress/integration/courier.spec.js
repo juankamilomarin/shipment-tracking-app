@@ -5,7 +5,7 @@ describe('Courier', () => {
 
     beforeEach(() => {
         cy.stubGraphQlCalls()
-        cy.visit('/')
+        cy.visit('/#/courier')
     })
 
     it('should load couriers icon', () => {
