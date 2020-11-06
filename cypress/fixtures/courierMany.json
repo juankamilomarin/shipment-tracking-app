@@ -10,6 +10,11 @@
                 "id": 1,
                 "name": "Amazon",
                 "active": true
+            },
+            {
+                "id": 2,
+                "name": "UPS",
+                "active": true
             }
         ]
     }

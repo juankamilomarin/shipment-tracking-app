@@ -20,20 +20,29 @@ Cypress.Commands.add('checkTableColumns', (tableId, columnNames) => {
     })
 })
 
-Cypress.Commands.add('clickRowEditButton', (tableId, rowIndex) => {
+const clickOnButton = (tableId, rowIndex, buttonName) => {
     cy.get(`#${tableId} tbody tr `).within($rows => {
         const $columns = $rows[rowIndex].children
         for (let w = 0; w < $columns.length; w++) {
-            if($columns[w].firstChild && $columns[w].firstChild.nodeName === 'A' && $columns[w].firstChild.textContent === 'Edit'){
+            if($columns[w].firstChild && $columns[w].firstChild.nodeName === 'A' && $columns[w].firstChild.textContent === buttonName){
                 cy.wrap($columns[w].firstChild).click()
                 break
             }
         }
     })
+}
+
+Cypress.Commands.add('clickRowEditButton', (tableId, rowIndex) => {
+    clickOnButton(tableId, rowIndex, 'Edit')
+})
+
+Cypress.Commands.add('clickShowButton', (tableId, rowIndex) => {
+    clickOnButton(tableId, rowIndex, 'Show')
 })
 
 const GET_LIST = 'get_list'
 const GET_MANY = 'get_many'
+const GET_MANY_REFERENCE = 'get_many_reference'
 const GET_ONE = 'get_one'
 const UPDATE = 'update'
 const UPDATE_MANY = 'update_many'
@@ -44,18 +53,21 @@ const getTypeAndResource = (operationName) => {
     if(operationName.indexOf(`${GET_LIST}_`) === 0){
         type = GET_LIST
         resource = operationName.substr(GET_LIST.length + 1)
+    } else if(operationName.indexOf(`${GET_MANY_REFERENCE}_`) === 0){
+        type = GET_MANY_REFERENCE
+        resource = operationName.substr(GET_MANY_REFERENCE.length + 1)
     } else if(operationName.indexOf(`${GET_MANY}_`) === 0){
         type = GET_MANY
         resource = operationName.substr(GET_MANY.length + 1)
     } else if(operationName.indexOf(`${GET_ONE}_`) === 0){
         type = GET_ONE
         resource = operationName.substr(GET_ONE.length + 1)
-    } else if(operationName.indexOf(`${UPDATE}_`) === 0){
-        type = UPDATE
-        resource = operationName.substr(UPDATE.length + 1)
     } else if(operationName.indexOf(`${UPDATE_MANY}_`) === 0){
         type = UPDATE_MANY
         resource = operationName.substr(UPDATE_MANY.length + 1)
+    } else if(operationName.indexOf(`${UPDATE}_`) === 0){
+        type = UPDATE
+        resource = operationName.substr(UPDATE.length + 1)
     } else if(operationName.indexOf(`${INSERT}_`) === 0){
         type = INSERT
         resource = operationName.substr(INSERT.length + 1)
@@ -78,6 +90,7 @@ Cypress.Commands.add('stubGraphQlCalls', () => {
                     fixture = `${resource}List.json`
                     break
                 case GET_MANY:
+                case GET_MANY_REFERENCE:
                     fixture = `${resource}Many.json`
                     break
                 case GET_ONE:

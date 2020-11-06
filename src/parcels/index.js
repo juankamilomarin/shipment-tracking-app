@@ -1,9 +1,9 @@
-// TODO Add show screen and tabs to update store orders from here
 import React from 'react';
-import AssignmentIcon from '@material-ui/icons/Assignment';
+import AllInbox from '@material-ui/icons/AllInbox';
 import ParcelList from './ParcelList';
 import ParcelEdit from './ParcelEdit';
 import ParcelCreate from './ParcelCreate';
+import ParcelShow from './ParcelShow';
 
 export const RESOURCE_PROPERTIES = `
     id
@@ -16,7 +16,8 @@ const stores = {
     list: ParcelList,
     edit: ParcelEdit,
     create: ParcelCreate,
-    icon: () => <div id='parcel-icon'><AssignmentIcon/></div>
+    show: ParcelShow,
+    icon: () => <div id='parcel-icon'><AllInbox/></div>
 }
 
 export default stores

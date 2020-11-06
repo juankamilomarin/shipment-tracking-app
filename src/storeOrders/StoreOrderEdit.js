@@ -9,33 +9,45 @@ import {
     NumberInput,
     SelectInput
 } from 'react-admin';
+import { parse } from 'query-string';
 
 const StoreOrderTitle = ({ record }) => {
     return <span>{`Edit StoreOrder - "${record.item_name}"`}</span>;
 };
 
-const StoreOrderEdit = props => (
-    <Edit title={<StoreOrderTitle />} undoable={false} {...props}>
-        <SimpleForm submitOnEnter={false} redirect="list">
-            <TextField source="id"/>
-            <ReferenceInput source="parcel_id" reference="parcel">
-                <SelectInput optionText="name" />
-            </ReferenceInput>
-            <TextInput source="item_name"/>
-            <ReferenceInput source="store_id" reference="store">
-                <SelectInput optionText="name" />
-            </ReferenceInput>
-            <NumberInput source="cost" />
-            <NumberInput source="weight" />
-            <DateInput source="order_date" />
-            <ReferenceInput source="courier_id" reference="courier"  filter={{ active: true }} >
-                <SelectInput optionText="name" />
-            </ReferenceInput>
-            <TextInput label="Tracking id" source="tracking_id"/>
-            <DateInput source="shipping_date" />
-            <DateInput source="delivery_date" />
-        </SimpleForm>
-    </Edit>
-);
+const StoreOrderEdit = props => {
+    const { parcel_id: parcel_id_string } = parse(props.location.search);
+    let redirect = 'list'
+    if(parcel_id_string){
+        const parcel_id = parseInt(parcel_id_string, 10)
+        redirect = `/parcel/${parcel_id}/show/store_order`
+    }
+    return (
+        <Edit title={<StoreOrderTitle />} undoable={false} {...props}>
+            <SimpleForm 
+                submitOnEnter={false}
+                redirect={redirect}
+            >
+                <TextField source="id"/>
+                <ReferenceInput source="parcel_id" reference="parcel">
+                    <SelectInput optionText="name"/>
+                </ReferenceInput>
+                <TextInput source="item_name"/>
+                <ReferenceInput source="store_id" reference="store">
+                    <SelectInput optionText="name" />
+                </ReferenceInput>
+                <NumberInput source="cost" />
+                <NumberInput source="weight" />
+                <DateInput source="order_date" />
+                <ReferenceInput source="courier_id" reference="courier"  filter={{ active: true }} >
+                    <SelectInput optionText="name" />
+                </ReferenceInput>
+                <TextInput label="Tracking id" source="tracking_id"/>
+                <DateInput source="shipping_date" />
+                <DateInput source="delivery_date" />
+            </SimpleForm>
+        </Edit>
+    )
+}
 
 export default StoreOrderEdit

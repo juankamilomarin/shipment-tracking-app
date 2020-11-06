@@ -13,7 +13,7 @@ describe('Store', () => {
 
     it('should load table', () => {
         cy.get('#parcel-list').within(() => {
-            let expectedColumnNames = ['Id', 'Name', 'Opening date', 'Closing date', '']
+            let expectedColumnNames = ['Id', 'Name', 'Opening date', 'Closing date', '', '']
             cy.checkTableColumns('parcel-table', expectedColumnNames)
         })
     })
@@ -31,4 +31,27 @@ describe('Store', () => {
         cy.get('input[name = "name"]').should('exist')
         cy.get('input[name = "opening_date"]').should('exist')
     })
+
+    it('should load show screen with summary and orders tabs', () => {
+        cy.clickShowButton('parcel-table', 0)
+        cy.get('a[id = "parce-show-summary-tab"]').should('exist')
+        cy.get('span[id = "id"]').should('exist')
+        cy.get('span[id = "name"]').should('exist')
+        cy.get('span[id = "opening_date"]').should('exist')
+        cy.get('span[id = "closing_date"]').should('exist')
+        cy.get('a[id = "parce-show-store_order-tab"]').click()
+        // Wait for other resources to finish loading before asserting fields
+        cy.get('span:contains("Amazon")').should('exist')
+        cy.get('span:contains("UPS")').should('exist')
+        // Begin assertions for this tab...
+        cy.get('span[id = "item_name"]').should('exist')
+        cy.get('span[id = "cost"]').should('exist')
+        cy.get('span[id = "weight"]').should('exist')
+        cy.get('span[id = "order_date"]').should('exist')
+        cy.get('span[id = "tracking_id"]').should('exist')
+        cy.get('span[id = "shipping_date"]').should('exist')
+        cy.get('span[id = "delivery_date"]').should('exist')
+    })
+
+    // TODO Add integration tests for add and edit order from the show screen
 })

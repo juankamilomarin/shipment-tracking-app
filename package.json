@@ -10,6 +10,7 @@
     "@testing-library/user-event": "^12.1.10",
     "luxon": "^1.25.0",
     "prop-types": "^15.7.2",
+    "query-string": "^6.13.7",
     "ra-data-json-server": "^3.9.5",
     "react": "^17.0.1",
     "react-admin": "^3.9.5",
