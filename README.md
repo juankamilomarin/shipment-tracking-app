@@ -2,7 +2,7 @@
 
 React admin application which uses a Hasura back end server and a Postgres database to manage your personal shipments.
 
-If you like to buy things on Amazon, eBay, Target and other online shops this application helps you keep track of the shipments you have in process, handling basic information such as shops, couriers and status associated to each package. 
+If you like to buy things on Amazon, eBay, Target and other online shops this application helps you keep track of the shipments you have in process, handling basic information such as shops, couriers and status associated to each order. 
 
 ## Concepts you will see with this application
 
@@ -50,7 +50,7 @@ Run the `create-tables.sql` file on the newly Postgres database. You can run thi
  * store
  * parcel
  * store_order
- 
+
 ### React application
 Once your hasura instance is running simply run your React app by running `npm start`
 
