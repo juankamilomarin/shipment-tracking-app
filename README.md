@@ -4,6 +4,18 @@ React admin application which uses a Hasura back end server and a Postgres datab
 
 If you like to buy things on Amazon, eBay, Target and other online shops this application helps you keep track of the shipments you have in process, handling basic information such as shops, couriers and status associated to each package. 
 
+## Concepts you will see with this application
+
+* How to work with React-Admin
+    *   Use of list, create, edit and filter components
+    *   Creation of custom data provider (using GraphQL + Hasura)
+    *   Use of i8n
+    *   Use a custom theme
+* How to build GraphQL queries
+* How to work with Jest and React Testing Library for unit testing
+* How to work with Cypress for E2E testing
+* How to setup a simple Hasura local container
+
 ## Technlogoies
 
 * Front end
@@ -36,7 +48,9 @@ Run the `create-tables.sql` file on the newly Postgres database. You can run thi
  Once you run it, you should see the following tables:
  * courier
  * store
-
+ * parcel
+ * store_order
+ 
 ### React application
 Once your hasura instance is running simply run your React app by running `npm start`
 
