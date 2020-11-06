@@ -15,6 +15,7 @@ If you like to buy things on Amazon, eBay, Target and other online shops this ap
 * How to work with Jest and React Testing Library for unit testing
 * How to work with Cypress for E2E testing
 * How to setup a simple Hasura local container
+* How to use feature flags in your app
 
 ## Technlogoies
 
