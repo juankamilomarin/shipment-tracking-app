@@ -12,7 +12,7 @@ describe("i18nProvider", () => {
         jest.clearAllMocks()
     })
 
-    it("Returns expected tranlations", () => {
+    it("should return all English translations", () => {
         const expectedTranslations = {
             englishMessages: { test: { englishMessage: 'Test english message' } },
             ...en
