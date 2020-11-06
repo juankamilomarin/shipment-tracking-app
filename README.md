@@ -2,7 +2,9 @@
 
 React admin application which uses a Hasura back end server and a Postgres database to manage your personal shipments.
 
-If you like to buy things on Amazon, eBay, Target and other online shops this application helps you keep track of the shipments you have in process, handling basic information such as shops, couriers and orders.
+If you like to buy things on Amazon, eBay, Target and other online shops this application helps you keep track of the orders you have in process.
+Every time you create a new order, you are asked to associate the online shop and courier with some additional data.
+Orders are grouped into parcels. Parcels are useful when you want to consolidate your orders and then re-send them to another country (in my case, Colombia). 
 
 ## Concepts you will see on this application
 
