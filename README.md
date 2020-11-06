@@ -4,7 +4,7 @@ React admin application which uses a Hasura back end server and a Postgres datab
 
 If you like to buy things on Amazon, eBay, Target and other online shops this application helps you keep track of the shipments you have in process, handling basic information such as shops, couriers and orders.
 
-## Concepts you will see with this application
+## Concepts you will see on this application
 
 * How to work with React-Admin
     *   Use of list, create, edit and filter components
