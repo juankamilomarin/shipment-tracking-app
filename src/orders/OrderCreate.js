@@ -19,11 +19,11 @@ const validateCreation = (values) => {
     return errors
 }
 
-const StoreOrderTitle = () => {
-    return <span>{`Create StoreOrder`}</span>;
+const OrderTitle = () => {
+    return <span>{`Create Order`}</span>;
 };
 
-const StoreOrderCreate = props => {
+const OrderCreate = props => {
     const { parcel_id: parcel_id_string } = parse(props.location.search);
     let parcel_id = '',
         redirect = 'list', 
@@ -34,7 +34,7 @@ const StoreOrderCreate = props => {
         disableParcelInput = true
     }
     return (
-        <Create title={<StoreOrderTitle />} {...props}>
+        <Create title={<OrderTitle />} {...props}>
             <SimpleForm 
                 submitOnEnter={false}
                 defaultValue={{ parcel_id }}
@@ -62,4 +62,4 @@ const StoreOrderCreate = props => {
     )
 };
 
-export default StoreOrderCreate
+export default OrderCreate

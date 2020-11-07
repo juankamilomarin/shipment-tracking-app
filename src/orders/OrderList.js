@@ -9,7 +9,7 @@ import {
     NumberField
 } from 'react-admin';
 
-const StoreOrderList = (props) => {
+const OrderList = (props) => {
     return (
         <List id='order-list' bulkActionButtons={ false } {...props}>
             <Datagrid id='order-table'>
@@ -36,4 +36,4 @@ const StoreOrderList = (props) => {
     );
 }
 
-export default StoreOrderList
+export default OrderList

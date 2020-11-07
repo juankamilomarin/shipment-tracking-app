@@ -11,11 +11,11 @@ import {
 } from 'react-admin';
 import { parse } from 'query-string';
 
-const StoreOrderTitle = ({ record }) => {
-    return <span>{`Edit StoreOrder - "${record.item_name}"`}</span>;
+const OrderTitle = ({ record }) => {
+    return <span>{`Edit Order - "${record.item_name}"`}</span>;
 };
 
-const StoreOrderEdit = props => {
+const OrderEdit = props => {
     const { parcel_id: parcel_id_string } = parse(props.location.search);
     let redirect = 'list'
     if(parcel_id_string){
@@ -23,7 +23,7 @@ const StoreOrderEdit = props => {
         redirect = `/parcel/${parcel_id}/show/order`
     }
     return (
-        <Edit title={<StoreOrderTitle />} undoable={false} {...props}>
+        <Edit title={<OrderTitle />} undoable={false} {...props}>
             <SimpleForm 
                 submitOnEnter={false}
                 redirect={redirect}
@@ -50,4 +50,4 @@ const StoreOrderEdit = props => {
     )
 }
 
-export default StoreOrderEdit
+export default OrderEdit

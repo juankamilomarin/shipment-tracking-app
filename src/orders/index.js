@@ -1,8 +1,8 @@
 import React from 'react';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-import StoreOrderList from './StoreOrderList';
-import StoreOrderEdit from './StoreOrderEdit';
-import StoreOrderCreate from './StoreOrderCreate';
+import OrderList from './OrderList';
+import OrderEdit from './OrderEdit';
+import OrderCreate from './OrderCreate';
 
 export const RESOURCE_PROPERTIES = `
     id
@@ -19,9 +19,9 @@ export const RESOURCE_PROPERTIES = `
 `
 
 const stores = {
-    list: StoreOrderList,
-    edit: StoreOrderEdit,
-    create: StoreOrderCreate,
+    list: OrderList,
+    edit: OrderEdit,
+    create: OrderCreate,
     icon: () => <div id='order-icon'><AssignmentIcon/></div>
 }
 

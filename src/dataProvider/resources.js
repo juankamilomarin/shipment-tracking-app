@@ -1,7 +1,7 @@
 import { RESOURCE_PROPERTIES as COURIER_PROPERTIES } from '../couriers'
 import { RESOURCE_PROPERTIES as STORE_PROPERTIES } from '../stores'
 import { RESOURCE_PROPERTIES as PARCEL_PROPERTIES } from '../parcels'
-import { RESOURCE_PROPERTIES as ORDER_PROPERTIES } from '../storeOrders'
+import { RESOURCE_PROPERTIES as ORDER_PROPERTIES } from '../orders'
 
 export const COURIER = 'courier'
 export const STORE = 'store'

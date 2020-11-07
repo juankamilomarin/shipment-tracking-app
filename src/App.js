@@ -13,12 +13,12 @@ import { getActiveResources } from './featureFlags/toggleRouter';
 import couriers from './couriers'
 import stores from './stores'
 import parcels from './parcels'
-import storeOrders from './storeOrders'
+import orders from './orders'
 import { COURIER, STORE, PARCEL, ORDER } from './dataProvider/resources'
 
 const resources = [
     <Resource name={PARCEL} {...parcels} key={`${PARCEL}-resource`}/>,
-    <Resource name={ORDER} {...storeOrders} key={`${ORDER}-resource`}/>,
+    <Resource name={ORDER} {...orders} key={`${ORDER}-resource`}/>,
     <Resource name={COURIER} {...couriers} key={`${COURIER}-resource`}/>,
     <Resource name={STORE} {...stores} key={`${STORE}-resource`}/>,
 ]
