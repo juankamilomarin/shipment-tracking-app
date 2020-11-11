@@ -1,6 +1,4 @@
 // TODO: Add custom pagination
-// TODO: Implement login page
-// TODO: Implement authentication
 // TODO: Add Google Analytics
 
 import React from 'react';
@@ -9,6 +7,8 @@ import customDataProvider from './dataProvider/customDataProvider';
 import theme from './design/theme';
 import i18nProvider from './i18nProvider/i18nProvider';
 import FeatureFlagProvider from './featureFlags/FeatureFlagProvider';
+import LoginPage from './design/LoginPage';
+import authProvider from './authProvider/authProvider';
 import { getActiveResources } from './featureFlags/toggleRouter';
 import couriers from './couriers'
 import stores from './stores'
@@ -29,6 +29,8 @@ const App = () => (
             dataProvider={customDataProvider}
             theme={theme}
             i18nProvider={i18nProvider}
+            authProvider={authProvider}
+            loginPage={LoginPage}
         >
             {(permissions => getActiveResources(resources))}
         </Admin>

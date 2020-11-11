@@ -5,6 +5,7 @@ describe('Store', () => {
     beforeEach(() => {
         cy.stubGraphQlCalls()
         cy.visit('/#/store')
+        cy.login()
     })
 
     it('should load stores icon', () => {

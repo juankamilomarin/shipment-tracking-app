@@ -11,6 +11,12 @@
 // https://on.cypress.io/custom-commands
 // ***********************************************
 
+Cypress.Commands.add('login', () => {
+    cy.get('input[name = "username"]').type('username')
+    cy.get('input[name = "password"]').type('password')
+    cy.get('span:contains("Sign in")').click()
+})
+
 Cypress.Commands.add('checkTableColumns', (tableId, columnNames) => {
     cy.get(`#${tableId} th`).should(($columns) => {
         expect($columns.length).equal(columnNames.length)

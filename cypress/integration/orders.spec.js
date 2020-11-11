@@ -5,6 +5,7 @@ describe('Orders', () => {
     beforeEach(() => {
         cy.stubGraphQlCalls()
         cy.visit('/#/order')
+        cy.login()
         cy.get('[href="#/parcel/1"]', { timeout: 10000 }).should('be.visible')
         cy.get('[href="#/store/1"]', { timeout: 10000 }).should('be.visible')
         cy.get('[href="#/courier/1"]', { timeout: 10000 }).should('be.visible')
