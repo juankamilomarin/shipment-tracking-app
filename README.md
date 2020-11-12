@@ -18,12 +18,14 @@ Orders are grouped into parcels. Parcels are useful when you want to consolidate
 * How to work with Cypress for E2E testing
 * How to setup a simple Hasura local container
 * How to use feature flags in your app
+* How to authenticate your users using a Cognito pool via AWS Amplify
 
 ## Technlogoies
 
 * Front end
     * React 17.0.1 - Using [Create React App](https://github.com/facebook/create-react-app).
     * [React Admin](https://marmelab.com/react-admin/) - A frontend Framework for building admin applications running in the browser, on top of REST/GraphQL APIs, using ES6, React and Material Design
+    * AWS Amplify to authenticate the app against a Cognito pool
 * Back end
     * [Hasura](https://hasura.io/) - Instant GraphQL server with authorization for your data
 * Database
@@ -33,7 +35,7 @@ Orders are grouped into parcels. Parcels are useful when you want to consolidate
 
 ### Hasura + postgres
 
-<b>Step 1: Get Get docker-compose</b>
+<b>Step 1: Get docker-compose</b>
 
 Get docker-compose file from the hasura repo
 
@@ -55,7 +57,9 @@ Run the `create-tables.sql` file on the newly Postgres database. You can run thi
  * store_order
 
 ### React application
-Once your hasura instance is running simply run your React app by running `npm start`
+Once your hasura instance is running simply run your React app by running `npm start`. The application comes with the local mode by default. In this mode you can login using any username/password combination (which is stored in the localStorage).
+
+If your want to authenticate the application against a Cognito pool simple set localMode to false and provide the Cognito info (region, userPoolId and userPoolWebClientId) in the `public/config.js` file.
 
 ## Available Scripts
 
@@ -80,7 +84,7 @@ Launches the test runner reporting the coverage for all the files. Take into acc
 
 ### `npm run cypress`
 
-Launches [cypress](https://www.cypress.io/) test runner.
+Launches [cypress](https://www.cypress.io/) test runner. Remember to  also run the React App prior to run this command.
 
 ### `npm run build`
 
