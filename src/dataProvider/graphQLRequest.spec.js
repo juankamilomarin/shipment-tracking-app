@@ -1,12 +1,15 @@
 import { getDefaultGraphQLRequest, getGraphQLRequest } from './graphQLRequest';
 import getQuery from './getQuery';
+import getSessionToken from '../authProvider/getSessionToken'
 
 jest.mock('./getQuery')
+jest.mock('../authProvider/getSessionToken')
 
 describe("getDefaultGraphQLRequest", () => {
 
     beforeEach(() => {
         getQuery.mockImplementation(() => ['testOperationName', 'testQuery'])
+        getSessionToken.mockImplementation(() => Promise.resolve('sessionToken'))
     })
 
     afterEach(() => {
@@ -21,7 +24,8 @@ describe("getDefaultGraphQLRequest", () => {
         const expectedRequest = { 
             method: 'POST',
             headers: { 
-                'content-type': 'application/json' 
+                'content-type': 'application/json',
+                'Authorization': 'sessionToken'
             },
             body: "{\"operationName\":\"testOperationName\",\"query\":\"testQuery\"}"
         }
@@ -31,6 +35,13 @@ describe("getDefaultGraphQLRequest", () => {
 });
 
 describe("getGraphQLRequest", () => {
+    beforeEach(() => {
+        getSessionToken.mockImplementation(() => Promise.resolve('sessionToken'))
+    })
+
+    afterEach(() => {
+        jest.clearAllMocks()
+    })
 
     it("should return request with method type, headers and body", async () => {
         const operationName = 'testOperationName'
@@ -39,7 +50,8 @@ describe("getGraphQLRequest", () => {
         const expectedRequest = { 
             method: 'POST',
             headers: { 
-                'content-type': 'application/json' 
+                'content-type': 'application/json',
+                'Authorization': 'sessionToken'
             },
             body: "{\"operationName\":\"testOperationName\",\"query\":\"testQuery\"}"
         }

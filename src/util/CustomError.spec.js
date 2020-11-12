@@ -18,6 +18,14 @@ describe("CustomError", () => {
         jest.clearAllMocks()
     })
 
+    it("should set 'User not authenticated' message property for USER_NOT_AUTHENTICATED error", () => {
+        const errorSpy = jest.spyOn(console, 'error')
+        const customError = new CustomError(ERROR_TYPES.USER_NOT_AUTHENTICATED, testMessage)
+        expect(errorSpy).toBeCalledWith(testMessage)
+        expect(customError.type).toBe(ERROR_TYPES.USER_NOT_AUTHENTICATED)
+        expect(customError.message).toBe('User not authenticated')
+    });
+
     it("should set same error message property for METHOD_NOT_VALID error", () => {
         const errorSpy = jest.spyOn(console, 'error')
         const customError = new CustomError(ERROR_TYPES.METHOD_NOT_VALID, testMessage)

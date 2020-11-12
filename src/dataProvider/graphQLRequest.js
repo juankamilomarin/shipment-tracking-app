@@ -1,9 +1,13 @@
+import getSessionToken from "../authProvider/getSessionToken"
 import getQuery from "./getQuery"
 
-export const getGraphQLRequest = (operationName, query) => {
+export const getGraphQLRequest = async (operationName, query) => {
+    let authorizationToken = await getSessionToken()
+
     let dataQuery = { operationName, query }
     const headers = { 
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': authorizationToken
     }
     const request = { 
         method: 'POST',
@@ -13,7 +17,7 @@ export const getGraphQLRequest = (operationName, query) => {
     return request
 }
 
-export const getDefaultGraphQLRequest = (type, resource, params) => {
+export const getDefaultGraphQLRequest = async (type, resource, params) => {
     const [operationName, query] = getQuery(type, resource, params)
-    return getGraphQLRequest(operationName, query)
+    return await getGraphQLRequest(operationName, query)
 }
