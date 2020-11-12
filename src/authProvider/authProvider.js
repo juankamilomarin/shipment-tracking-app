@@ -34,7 +34,6 @@ const checkAuth = () => Auth.currentAuthenticatedUser()
 
 const getPermissions = () => Promise.resolve() // There's no need to implement permission/role base logic (for now)
 
-// TODO add logic to use local provider in local tests
 const localProvider = {
     login: ({ username }) => {
         localStorage.setItem('username', username);
@@ -67,4 +66,4 @@ const authProvider = {
     getPermissions
 }
 
-export default authProvider
+export default  window.config.auth.localMode ? localProvider : authProvider

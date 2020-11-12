@@ -4,10 +4,13 @@ window.config = {
     hasura: {
         endpoint: 'http://localhost:8080',
     },
-    cognito: {
-        region: '{region}',
-        userPoolId: '{pool_id}',
-        userPoolWebClientId: '{user_pool_webclient_id}'
+    auth: {
+        localMode: true,
+        cognito: {
+            region: '{region}',
+            userPoolId: '{pool_id}',
+            userPoolWebClientId: '{user_pool_webclient_id}',
+        }
     },
     splitio: {
         authorizationKey: '5kr4vra0c7r79en108p3o1lo844ng7c23rhb'
