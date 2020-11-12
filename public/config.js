@@ -1,4 +1,4 @@
-// The idea is to update parameters based on the environment you deploy the application.
+// The idea is to update these parameters based on the environment you deploy the application.
 // This could be done for instance in your CI pipeline.
 window.config = {
     hasura: {
