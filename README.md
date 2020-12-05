@@ -56,6 +56,10 @@ Run the `create-tables.sql` file on the newly Postgres database. You can run thi
  * parcel
  * store_order
 
+<b>Step 4: Track all tables and foreign-key relationships in Hasura</b>
+
+On the same tab click on Track All option for both tables and foreign-keys
+
 ### React application
 Once your hasura instance is running simply run your React app by running `npm start`. The application comes with the local mode by default. In this mode you can login using any username/password combination (which is stored in the localStorage).
 
