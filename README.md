@@ -31,7 +31,7 @@ Orders are grouped into parcels. Parcels are useful when you want to consolidate
 * Database
     * Postgres 12.2
 
-## Instalation
+## Installation
 
 ### Hasura + postgres
 
